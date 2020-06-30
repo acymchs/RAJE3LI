@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Hero section -->
+<section class="hero-section set-bg" data-setbg="{% static 'webuni/img/bg.jpg'%}">
+  <div class="container">
+    <div class="hero-text text-white">
+      {% if request.user.is_authenticated %}
+      <h2>Bienvenue {% if request.user.profile.is_teacher == True %}
+         prof,
+        {% endif %} {{ request.user.username|capfirst }}
+
+       
+      </h2>
+      {% else %}
+      <h2>أفضل الدورات المجانية على الإنترنت</h2>
+      {% endif %}
+      <p>RAJE3LI هي منصة على الإنترنت لتدريس المحاضرات المدرسية من قبل فريق عمل مخصص للمعلمين والمدربين ذوي الخبرة مما يسهل عليهم التعلم من خلال الفيديو..</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <form method="post" action="{% url 'courses:kerko_kurs' %}" class="intro-newslatter"> {% csrf_token %}
+          <input name="search" type="text" placeholder="ادخل اسم الدورة">
+          <button type="submit" class="site-btn">Rechercher le cours</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Hero section end -->
+
+<!-- categories section -->
+<section class="categories-section spad">
+  <div class="container">
+    <div class="section-title">
+      <h2 id="kurset">Catégories et classes</h2>
+      <p>Les leçons sont divisées en différentes catégories selon les classes et leur niveau. Vous devez d'abord vous inscrire puis suivre la classe à laquelle il appartient
+.</p>
+    </div>
+    <div class="row">
+      {% for cat in category %}
+      <!-- categorie -->
+      <div data-aos="zoom-in" class="col-lg-4 col-md-6">
+        <div class="categorie-item">
+          <div class="ci-thumb set-bg" data-setbg="{{ cat.imazhi.url }}"></div>
+          <div class="ci-text">
+
+            <h5>{{cat.Titre|capfirst}}</h5>
+
+            <p>{{ cat.description|capfirst }}</p>
+            <span><a class="btn btn-success" href="/courses/{{ cat.id }}">Regardez les trucs</a></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- categories section end -->
+{% if request.user.is_authenticated %}
+{% else %}
+<section class="course-section spad">
+  <div class="container">
+    <div class="section-title mb-0">
+      <h2>Exemples de cours</h2>
+      <p class="pb-3">في ما يلي بعض الأمثلة عن الدورات التي يأخذها الطلاب على منصتنا.</p>
+    </div>
+  </div>
+  <div class="course-warp">                                     
+    <div class="row course-items-area">
+      <!-- course -->
+      <div class="mix col-lg-3 col-md-4 col-sm-6 finance">
+        <div class="course-item">
+          <div class="course-thumb set-bg" data-setbg="{% static 'webuni/img/courses/4.jpg' %}">
+            <iframe width="100%" height="290" src="https://www.youtube.com/embed/EexyBwBG9dM?controls=0"  frameborder="0" controls allowfullscreen></iframe>  
+            
+          </div>
+          <div class="course-info">
+            <div class="course-text">
+              <h5>géométrie</h5>
+              <p>Mathématiques</p>
+              <div class="students">Classe 11</div>
+            </div>
+            <div class="course-author">
+              <div class="ca-pic set-bg" data-setbg="{% static 'webuni/img/authors/4.jpg' %}"></div>
+              <p>prénom / nom de famille, <span>Enseignants</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- course -->
+      <div class="mix col-lg-3 col-md-4 col-sm-6 design">
+        <div class="course-item">
+          <div class="course-thumb set-bg" data-setbg="{% static 'webuni/img/courses/4.jpg' %}">
+            <iframe width="100%" height="290" src="https://www.youtube.com/embed/mNJ06S60B9k?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="course-info">
+            <div class="course-text">
+              <h5>Électrolyse</h5>
+              <p>Chimie</p>
+              <div class="students">Classe 12</div>
+            </div>
+            <div class="course-author">
+              <div class="ca-pic set-bg" data-setbg="{% static 'webuni/img/authors/4.jpg' %}"></div>
+              <p>prénom / nom de famille, <span>Enseignants</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- course -->
+      <div class="mix col-lg-3 col-md-4 col-sm-6 web">
+        <div class="course-item">
+          <div class="course-thumb set-bg" data-setbg="{% static 'webuni/img/courses/4.jpg' %}">
+            <iframe width="100%" height="290" src="https://www.youtube.com/embed/3Q_oYDQ2whs?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="course-info">
+            <div class="course-text">
+              <h5>Trigonométrie
+</h5>
+              <p>Mathématiques</p>
+              <div class="students">Classe 11</div>
+            </div>
+            <div class="course-author">
+              <div class="ca-pic set-bg" data-setbg="{% static 'webuni/img/authors/4.jpg' %}"></div>
+              <p>prénom / nom de famille, <span>Enseignants</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- course -->
+      <div class="mix col-lg-3 col-md-4 col-sm-6 photo">
+        <div class="course-item">
+          <div class="course-thumb set-bg" data-setbg="{% static 'webuni/img/courses/4.jpg' %}">
+            <iframe width="100%" height="290" src="https://www.youtube.com/embed/LQFsEwcCO1E?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="course-info">
+            <div class="course-text">
+              <h5>Circuit électrique</h5>
+              <p>Physiques</p>
+              <div class="students">Classe 11</div>
+            </div>
+            <div class="course-author">
+              <div class="ca-pic set-bg" data-setbg="{% static 'webuni/img/authors/4.jpg' %}"></div>
+              <p>prénom / nom de famille, <span>Enseignants</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+<!-- course section end -->
+
+{% if request.user.is_authenticated %}
+
+<!-- signup section -->
+{% if request.user.profile.is_teacher == True %}
+<div class="container">
+  <h1 class="text-center">Votre compte dispose d'un accès enseignant</h1><br>
+  <p class="text-center">Avec un compte enseignant, vous avez déjà un accès complet à cette plateforme. Vous pouvez exécuter plus de fonctions que le compte initial de l'étudiant. Certaines de ces fonctions sont:</p>
+
+  <div data-aos="fade-right" class="row mt-4 mb-4 bg-light">
+    <div class="col-md-4 text-center">
+      <h3 class="p-4">Vous pouvez créer votre propre classe</h3> 
+      <a href="{% url 'courses:creer_classes' %}" class="btn btn-outline-primary m-4">Créer une classe</a>
+    </div>
+    <div class="col-md-8">
+      <img class="img-fluid w-100" src="{% static 'webuni/img/categories/4.jpg' %}" alt="">
+    </div>
+  </div>
+
+  <div data-aos="fade-left" class="row mt-4 mb-4 bg-light">
+      <div class="col-md-8">
+        <img class="img-fluid w-100" src="{% static 'webuni/img/categories/2.jpg' %}" alt="">
+      </div>
+  
+    <div class="col-md-4 text-center">
+      <h3 class="p-4">Vous pouvez créer vos propres sujets</h3> 
+      <a href="{% url 'courses:creer_sujets' %}" class="btn btn-outline-primary m-4">Créer le sujet</a>
+  </div>
+</div>
+
+<div data-aos="fade-right" class="row mt-4 mb-4 bg-light">
+  <div class="col-md-4 text-center">
+    <h3 class="p-4">Vous pouvez télécharger vos propres leçons et vidéos.</h3> 
+    <a href="{% url 'courses:creer_apprentissage' %}" class="btn btn-outline-primary m-4">Créez l'apprentissage.</a>
+  </div>
+  <div class="col-md-8">
+    <img class="img-fluid w-100" src="{% static 'webuni/img/categories/1.jpg' %}" alt="">
+  </div>
+</div>
+</div>
+
+{% else %}
+<section data-aos="zoom-out" class="signup-section spad">
+  <div class="signup-bg set-bg" data-setbg="{% static 'webuni/img/signup-bg.jpg' %}"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="signup-warp">
+          <div class="section-title text-white text-left">
+            <h2>S'inscrire en tant que professeur</h2>
+            <p>Pour vous inscrire en tant que professeur sur la plate-forme, vous devez remplir les champs suivants, puis vous aurez un accès complet pour télécharger des cours et des vidéos.</p>
+            
+          </div>
+          <!-- signup form -->
+          <form action="/demande/" method="post" class="signup-form">{% csrf_token %}
+            <input type="text" placeholder="nom" name="name">
+            <input type="text" placeholder="Email" name="e-mail">
+            <input type="text" placeholder="Telephone" name="phone">
+            <button class="site-btn">Envoyer une demande</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endif %}
+<!-- signup section end -->
+{% else %}
+{% endif %}
+
+{% endblock content %}

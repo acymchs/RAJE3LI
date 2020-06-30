@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Entrez dans la plateforme" %}{% endblock %}
+<h1 class="entry-title">{% block blockname %} Entrez dans la plateforme   {% endblock blockname %} </h1>
+
+{% block content %}
+
+
+
+<div class="page-info-section set-bg mb-3" data-setbg="{% static 'webuni/img/page-bg/2.jpg' %}" style="height:200px">
+  <div class="container">
+    <div class="site-breadcrumb">
+
+    </div>
+  </div>
+</div>
+<div class='col-lg-10 offset-md-1 mt-5 mb-4 p-4' >
+
+    <h1>{% trans "Entrez dans la plateforme" %}</h1>
+
+    {% get_providers as socialaccount_providers %}
+
+    {% if socialaccount_providers %}
+
+    <p>{% blocktrans with site.name as site_name %}Veuillez saisir l'une de vos adresses existantes Ou, <a href="{{ signup_url }}">S'inscrire</a>
+    pour une adresse{{ site_name }} puis connectez-vous en cliquant ci-dessous:{% endblocktrans %}</p>
+
+    <div class="socialaccount_ballot">
+
+        <ul class="socialaccount_providers">
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+        </ul>
+
+        <div class="login-or">{% trans 'ose' %}</div>
+
+    </div>
+
+    {% include "socialaccount/snippets/login_extra.html" %}
+
+    {% else %}
+    <p>{% blocktrans %}Si vous n'avez pas encore créé d'adresse, veuillez
+    <a href="{{ signup_url }}">S'inscrire</a> initialement.{% endblocktrans %}</p>
+    {% endif %}
+
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Mot de passe oublié?" %}</a>
+        <button class="primaryAction btn btn-primary" type="submit">{% trans "S'inscrire" %}</button>
+    </form>
+
+</div>
+<hr>
+{% endblock %}

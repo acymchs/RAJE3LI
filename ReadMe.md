@@ -1,11 +1,11 @@
 # RAJE3LI EN Ligne
 est une Platforme developéé à partir du Framework Django/Python dans le cadre du Projet Python proposé par 
-Dr.Farouq Mohamed Dadde Le 15 Fevrier 2020
-Ce Projet est la Creation d'une Application Web qui peut relie des Professeurs et des Etudiants en Ligne en donnant
+Dr.Farouq Mohamedadde Nanne Le 15 Fevrier 2020
+Ce Projet est la Creation d'une Application Web qui permet de  relier des Professeurs et des Etudiants en Ligne en donnant
 l'oportunité aux Professeurs de suggerer des Videos YOUTUBE educatives aux etudiants.
 
 # Ahmed Cheikh Sidi Med Cheikh SIdiya IE18080
-# Med Saleck Lebchir 	IE18084
+# Med Saleck Med Lebchir 	IE18084
 # Hamoud cheikh messoud  IE18076
 
 

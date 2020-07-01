@@ -10,7 +10,7 @@ l'oportunité aux Professeurs de suggerer des Videos YOUTUBE educatives aux etud
 
 
 ## Setup
-1- Git clone 
+1- Git clone https://github.com/acymchs/RAJE3LI.git
 2- Dans le dossier telechargé installer un environnement virtual python avec `pip install virtualenv` sous windows ou 
 `python3 -m pip install --user virtualenv` sous Linux/MacOs
 

@@ -63,22 +63,22 @@ def demande(request):
         prof_id = profil.id
         Pro.objects.filter(id=prof_id).update(is_teacher=True)
         
-        message = 'Kerkesa juaj per nje llogari mesuesi u pranua! Tani ju mund te ktheheni tek MesoOn dhe te ngarkoni kurse dhe leksione, pune te mbare!'
+        message = 'Votre demande de compte enseignant a été acceptée! Vous pouvez maintenant revenir à Raje3li et télécharger des cours et des conférences, bon travail!'
         send_mail(
-            'MesoOn, kerkesa u pranua.',
+            'Raje3li, la demande a été acceptée.',
             message,
-            'mesoon@no-reply.com',
+            'raje3liwebsite@no-reply.com',
             [email],
             fail_silently=False,
         )
         send_mail(
-            'MesoOn',
-            'Dikush beri kerkese per llogari mesuesi. Me info: ' + Nom + ' , ' + email + ' , ' + telephone + ' , ' + str(prof) + '.',
-            'mesoon@no-reply.com',
-            ['redian1marku@gmail.com'],
+            'Raje3li',
+            'Quelqu un a fait une demande au nom de l enseignant. Avec info: ' + Nom + ' , ' + email + ' , ' + telephone + ' , ' + str(profil) + '.',
+            'raje3liwebsite@no-reply.com',
+            ['acym.chs@gmail.com'],
             fail_silently=False,
         )
-        messages.info(request, f'Kerkesa u dergua me sukses, ju do te njoftoheni me email.')
+        messages.info(request, f'La demande a été envoyée avec succès, vous en serez informé par e-mail.')
         return redirect('courses:home')
 
 

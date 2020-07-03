@@ -14,6 +14,7 @@ from django.contrib.auth.models import User
 def get_user_membership(request):
     user_membership_qs = UserMembership.objects.filter(user=request.user)
     if user_membership_qs.exists():
+        print(user_membership_qs.first())
         return user_membership_qs.first()
     return None
 
@@ -40,6 +41,7 @@ class MembershipSelectView(ListView):
         context = super().get_context_data(**kwargs)
         current_membership = get_user_membership(self.request)
         context['current_membership'] = str(current_membership.membership)
+        print(context)
         return context
 
     def post(self,request,*args,**kwargs):
@@ -57,7 +59,7 @@ class MembershipSelectView(ListView):
         """
         if user_membership.membership == selected_membership:
             if user_subscription != None:
-                messages.info(request, 'The selected membership is your current Memberships, your next payment would be due by {}'.format('get this value from stripe'))
+                messages.info(request, 'Tmembership selectionee est ta acctuelle membership, ton payement {}'.format('get this value from stripe'))
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         # PASS THE SELECTED_MEMBERSHIP INTO THE SESSION TO BE ABLE TO PAS IT INTO THE NEXT VIEWW
         request.session['selected_membership_type'] = selected_membership.membership_type
@@ -77,20 +79,11 @@ def PaymentView(request):
         # try:
         token = request.POST['stripeToken']
 
-        # UPDATE FOR STRIPE API CHANGE 2018-05-21
-
-        '''
-        First we need to add the source for the customer
-        '''
-
         customer = stripe.Customer.retrieve(user_membership.stripe_customer_id)
         customer.source = token # 4242424242424242
         customer.save()
 
-        '''
-        Now we can create the subscription using only the customer as we don't need to pass their
-        credit card source anymore
-        '''
+       
 
         subscription = stripe.Subscription.create(
             customer=user_membership.stripe_customer_id,
@@ -162,9 +155,9 @@ def CancelSubscription(request):
         request, "Successfully cancelled membership. We have sent an email")
     # sending an email here
     send_mail(
-        'Subscription successfully cancelled',
-        'Successfully cancelled membership. We have sent an email',
-        'adebisiayomide68@gmail.com',
+        'Subscription anuller avec succes',
+        'Anullation du Membership,on a envoyer unEmail',
+        'raje3liwebsite@gmail.com',
         [user_email],
         fail_silently=False,
     )

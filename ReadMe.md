@@ -6,11 +6,11 @@ l'oportunité aux Professeurs de suggerer des Videos YOUTUBE educatives aux etud
 
 # Ahmed Cheikh Sidi Med Cheikh SIdiya IE18080
 # Med Saleck Lebchir 	IE18084
-# Hamoud 
+# Hamoud cheikh messoud  IE18076
 
 
 ## Setup
-1- Git clone 
+1- Git clone https://github.com/acymchs/RAJE3LI.git
 2- Dans le dossier telechargé installer un environnement virtual python avec `pip install virtualenv` sous windows ou 
 `python3 -m pip install --user virtualenv` sous Linux/MacOs
 
@@ -21,4 +21,3 @@ l'oportunité aux Professeurs de suggerer des Videos YOUTUBE educatives aux etud
 	a-`python manage.py makemigrations`
 	b-`python manage.py migrate`
 	c-lancer votre server `python manage.py runserver`
-

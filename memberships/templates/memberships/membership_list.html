@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load static %}
 {% block post_detail_link %}
 
 {% endblock %}
@@ -11,7 +11,7 @@
     <div class="site-breadcrumb">
       <a href="#">Home</a>
       <span>Courses/</span>
-      <span>memberships/</span>
+      <span>Memberships/</span>
     </div>
   </div>
 </div>
@@ -29,8 +29,8 @@
         {% for membership in memberships %}
         <div class="col-sm-4 col-md-4">
           <h3>{{ membership.membership_type }}</h3>
-          <h4>Price : ${{ membership.price }} <small>/month</small> </h4>
-          <h5>INCLUDED COURSES</h5>
+          <h4>Prix : {{ membership.price }} MRU <small>/Mois</small> </h4>
+          <h5>Les Cours inclus</h5>
           <ul>
             {% for course in membership.membershipsallowed.all %}
               <li>Title : {{course.title}}</li>

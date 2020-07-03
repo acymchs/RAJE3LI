@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'blog',
     'crispy_forms',
     'allauth',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -181,14 +182,19 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 EMAIL_USE_TLS = True
 EMAIL_HOST='smtp.gmail.com'
-EMAIL_HOST_USER='redian1marku@gmail.com'
-EMAIL_HOST_PASSWORD='realitet'
+EMAIL_HOST_USER='raje3liwebsite@gmail.com'
+EMAIL_HOST_PASSWORD='ekvzhpxktyiharfr'
 EMAIL_PORT = 587 
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
 
 
 if DEBUG:
-    STRIPE_PUBLISHABLE_KEY = 'pk_test_LI02rx6BCdiFgRYQbCaU28o0'
-    STRIPE_SECRET_KEY = 'sk_test_FL1E1hwRQeavTXT99MzMCsDc'
+    STRIPE_PUBLISHABLE_KEY = 'pk_test_51H0rmLHmEEGRvWdndeh8B5hBBhpsKvbApkGuuPe3Y7wL4t7rHjR1HiPxyi3KUcplqFOsxy9bSTJwORFiJRdlLozp00Rk1FZI2O'
+    STRIPE_SECRET_KEY = 'sk_test_51H0rmLHmEEGRvWdnHst7DBSnMAJ5qGRFr89pyHqgZBEeOpoqUaQlzgnSywqviT7x9QCHgWhdJMgVbyH4aJdLTGug00NQCG4wxz'
 else:
-    STRIPE_PUBLISHABLE_KEY = 'pk_test_LI02rx6BCdiFgRYQbCaU28o0'
-    STRIPE_SECRET_KEY = 'sk_test_FL1E1hwRQeavTXT99MzMCsDc'
+    STRIPE_PUBLISHABLE_KEY = 'pk_test_51H0rmLHmEEGRvWdndeh8B5hBBhpsKvbApkGuuPe3Y7wL4t7rHjR1HiPxyi3KUcplqFOsxy9bSTJwORFiJRdlLozp00Rk1FZI2O'
+    STRIPE_SECRET_KEY = 'sk_test_51H0rmLHmEEGRvWdnHst7DBSnMAJ5qGRFr89pyHqgZBEeOpoqUaQlzgnSywqviT7x9QCHgWhdJMgVbyH4aJdLTGug00NQCG4wxz'
